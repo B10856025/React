@@ -1,0 +1,109 @@
+// import ArticleService from '../ArticleService';
+// import ImageService from '../ImageService';
+// // import testImgService from '@/testImgService';
+// import axios from 'axios';
+// // import { fa } from 'element-plus/es/locale';
+
+//     export default {
+        
+//         name: 'Login',
+//         data() {
+//             img: ''
+//             return {
+//                 posts: [],
+//                 test: [],
+//                 avatar: {},
+//                 title: '',
+//                 text: '',
+//                 filesize: '',
+//                 filename: '',
+//                 imgcode: '', 
+//                 selectedFile: null,
+//                 file: {}, //上传的文件对象
+//                 progressBar: 0, // 记录上传进度的变量
+//                 articles: [],
+//             }
+//         },
+//         // computed:{
+//         //     style(){ // 进度条样式
+//         //           return {
+//         //                 width: this.progressBar+"%"
+//         //           }
+//         //     }
+// 	    // },
+//         // async created() {
+//         //     try {
+//         //         const isLogin = localStorage.getItem('token');
+//         //         if( isLogin ) {
+//         //             this.$router.push('/');
+//         //         }
+//         //     } catch(err) {
+//         //         this.error = err.message;
+//         //     }
+//         // },
+//         methods: {
+//             async makeArticle() {
+//                 const check = false;
+//                 this.articles = await ArticleService.searchArticle(this.title)
+//                 for(const article in this.articles) {
+//                     if( article != [] ) {
+                        
+//                         check = true;
+//                     }
+//                 }
+//                 if( check == false ) {
+//                     const userName = localStorage.getItem('userName');
+//                     await ArticleService.insertPost(this.title, this.text , userName);
+                    
+//                     const formData = new FormData();
+//                     formData.append('file',this.file);
+//                     console.log( formData );
+
+//                     await axios.post('http://localhost:5000/api/testImg',formData,{
+//                     //     onUploadProgress: (progressEvent)=>{
+//                     //     var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+//                     //     this.progressBar = percentCompleted
+//                     // }
+//                     }).then(res=>{
+//                         console.log(res.data)
+//                         console.log(res.data.file.filename)
+//                         ImageService.insertPost(res.data.file.filename, this.title, 'article' );
+//                     })
+//                     // console.log( this.imgcode );
+//                     // alert( this.filesize + this.filename );
+                    
+//                     alert('文章已創建');
+//                     this.$router.push('/allArticle');
+//                 }else {
+//                     alert('文章已存在');
+//                 }
+                
+//                 // next('/allArticle');
+
+//                 // await PostService.insertPost(url_w, this.text);
+//                 // this.posts = await PostService.getPosts(url_w);
+//             },
+//             // async testImg() {
+//             //     alert('a' + this.img)
+//             //     await testImgService.insertPost(this.img);
+//             // },
+//             // uploadUrl(){
+//             //     return this.$http.defaults.baseURL+'/upload'
+//             // },
+//             fileSelect(e){ 
+//                 this.file = e.target.files[0]
+//             },
+//             async fileSubmit(){
+//                 const formData = new FormData();
+//                 formData.append('file',this.file);
+//                 console.log(formData);
+//                 console.log(formData.file);
+//                 await axios.post('http://localhost:5000/api/testImg',formData,{
+//                 //     onUploadProgress: (progressEvent)=>{
+//                 //     var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+//                 //     this.progressBar = percentCompleted
+//                 // }
+//                 }).then(res=>{
+//                     console.log(res.data)
+//                 })
+//             }
